@@ -33,7 +33,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("./../jks/debug.jks")
+            storeFile file("./../jks/dev.jks")
             storePassword System.getenv("KEY_STORE_PASS")
             keyAlias "debug"
             keyPassword System.getenv("KEY_STORE_PASS")
