@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        android_support_version = '24.2.0'
+        retrofit2_version = '2.1.0'
+    }
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    defaultConfig {
+        applicationId "com.nilnabi.android.natto"
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    signingConfigs {
+        release {
+            storeFile file("./../jks/debug.jks")
+            storePassword System.getenv("KEY_STORE_PASS")
+            keyAlias "debug"
+            keyPassword System.getenv("KEY_STORE_PASS")
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    // android support
+    compile "com.android.support:appcompat-v7:$android_support_version"
+    compile "com.android.support:support-v4:$android_support_version"
+    compile "com.android.support:design:$android_support_version"
+
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // rx
+    compile 'io.reactivex:rxkotlin:0.60.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    // retrofit2
+    compile "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit2_version"
+    compile ("com.squareup.retrofit2:converter-simplexml:$retrofit2_version") {
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+        exclude module: 'xpp3'
+    }
+}
+

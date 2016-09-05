@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Natto</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="article_base_url">http://blog.livedoor.com/xml/recent_articles.rdf</string>
+</resources>
