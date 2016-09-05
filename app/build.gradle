@@ -39,6 +39,9 @@ android {
             keyPassword System.getenv("KEY_STORE_PASS")
         }
     }
+    dexOptions {
+        preDexLibraries !(System.getenv()["CIRCLECI"] as boolean)
+    }
 }
 
 dependencies {
