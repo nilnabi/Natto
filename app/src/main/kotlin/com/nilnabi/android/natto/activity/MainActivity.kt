@@ -31,7 +31,7 @@ class MainActivity: AppCompatActivity() {
     val onClickFabListener by lazy {
         View.OnClickListener {
             Snackbar.make(it, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                    .setAction("TAction", null).show()
         }
     }
 
