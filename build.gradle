@@ -2,6 +2,7 @@
 
 buildscript {
     ext {
+        project_root = projectDir.path
         kotlin_version = '1.0.3'
     }
     repositories {

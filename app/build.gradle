@@ -22,23 +22,25 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
     signingConfigs {
         release {
-            storeFile file("./../jks/dev.jks")
+            storeFile file("$project_root/jks/dev.jks")
             storePassword System.getenv("KEY_STORE_PASS")
             keyAlias "debug"
             keyPassword System.getenv("KEY_STORE_PASS")
         }
     }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     dexOptions {
         preDexLibraries !(System.getenv()["CIRCLECI"] as boolean)
     }
