@@ -1,10 +1,6 @@
 package com.nilnabi.android.natto.service
 
-import android.util.Log
 import com.nilnabi.android.natto.api.LiveDoorApi
-import com.nilnabi.android.natto.entity.RssFeed
-import rx.android.schedulers.AndroidSchedulers
-import rx.lang.kotlin.subscriber
 import rx.schedulers.Schedulers
 
 /**
@@ -15,17 +11,33 @@ class RssFetchService {
     val api by lazy { LiveDoorApi().service }
 
     fun execute() {
-        api.recentArticle()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber<RssFeed>()
-                        .onNext {
-                            Log.d("", it.list?.size.toString())
-                        }
-                        .onError {
-                            Log.d("",it.message)
-                        }
-                )
+//        api.recentArticle()
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(subscriber<RssFeed>()
+//                        .onNext {
+//                            Log.d("", it.list?.size.toString())
+//
+//                        }
+//                        .onError {
+//                            Log.d("",it.message)
+//                        }
+//                )
+
+        api.recentArticle().subscribeOn(Schedulers.io()).map {
+            val rdfList = mutableListOf<String>()
+            it.list.filter {
+                it.link.replace(Regex("archives/.+"), "index.rdf").let { rdf ->
+                    rdfList.find { it.equals(rdf) } ?: rdfList.add(rdf)
+                }
+                true
+            }.let {
+                println(rdfList.size)
+            }
+
+        }.subscribe()
+
+
     }
 
 }
