@@ -10,7 +10,7 @@ import rx.schedulers.Schedulers
  */
 class RssFetchService {
 
-    val api by lazy { LiveDoorApi().service }
+    val api by lazy { LiveDoorApi().service2 }
 
     fun execute() {
         api.recentArticle().subscribeOn(Schedulers.io()).map {
@@ -22,6 +22,12 @@ class RssFetchService {
                     try {
                         db.child("sites").child(it.first)
                                 .updateChildren(it.second.toMapOf())
+//                        LiveDoorApi().makeService(it.second.getKey()).requestOrigin()
+//                                .subscribeOn(Schedulers.computation()).map {
+//                            it.list.map {
+//
+//                            }
+//                        }
                     } catch (e: Exception) {
                         Log.e("", e.message)
                     }

@@ -20,11 +20,24 @@ class LiveDoorApi {
                 .build()
         .create(Service::class.java)
 
+    val service2: Service = makeService("http://blog.livedoor.com/")
+
+    fun makeService(url: String): Service {
+        return Retrofit.Builder()
+                .baseUrl(url)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build()
+                .create(Service::class.java)
+    }
 
     interface Service {
 
         @GET("/xml/recent_articles.rdf")
         fun recentArticle(): Observable<RssFeed>
+
+        @GET
+        fun requestOrigin(): Observable<RssFeed>
     }
 
 }
