@@ -13,7 +13,7 @@ class RssFetchService {
     val api by lazy { LiveDoorApi().service }
 
     fun execute() {
-        api.recentArticle().subscribeOn(Schedulers.newThread()).map {
+        api.recentArticle().subscribeOn(Schedulers.io()).map {
             val db = FirebaseDatabase.getInstance().reference
             it.list.map {
                 Pair(it.getKey().hashCode().toString(), it)
@@ -27,33 +27,6 @@ class RssFetchService {
                     }
                 }
             }
-//            data.map {
-//                db.child("sites").updateChildren(it)
-//            }
-//            db.child("sites").updateChildren(data.map {  })
-            println()
-//            val siteLists = it.list.map {
-//                it.link.replace(Regex("archives/.+"), "index.rdf")
-//            }.distinct()
-//                db.runTransaction(object :Transaction.Handler {
-//                    override fun onComplete(databaseError: DatabaseError?, p1: Boolean, p2: DataSnapshot?) {
-//                        databaseError?.let {
-//                            Log.d("", databaseError.message)
-//                        }
-//                    }
-//
-//                    override fun doTransaction(mutableData: MutableData?): Transaction.Result {
-//                        mutableData?.let {
-//                            it.child("sites").value = site
-//                        }
-//                        return Transaction.success(mutableData)
-//                    }
-//
-//                })
-//                db.child("sites").push().setValue(it)
-
-//            db.child("sites").push().setValue(siteLists)
-//            siteLists.forEach { db.child("sites").updateChildren(mapOf(it) }
         }.subscribe()
     }
 
