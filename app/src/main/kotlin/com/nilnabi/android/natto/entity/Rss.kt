@@ -35,4 +35,17 @@ class RssItem {
     @get:Element(required = false)
     var date: String = ""
 
+    fun getKey(): String {
+        return link.replace(Regex("archives/.+"), "index.rdf")
+    }
+
+    fun toMapOf(): Map<String, Any> {
+        return mapOf(
+                Pair("rdf_url", link.replace(Regex("archives/.+"), "index.rdf")),
+                Pair("title", title),
+                Pair("link", link),
+                Pair("description", description),
+                Pair("date", date)
+        )
+    }
 }
