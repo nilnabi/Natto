@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1030799983219",
+    "firebase_url": "https://natto-d492d.firebaseio.com",
+    "project_id": "natto-d492d",
+    "storage_bucket": "natto-d492d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030799983219:android:01144631dfdb5d09",
+        "android_client_info": {
+          "package_name": "com.nilnabi.android.natto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030799983219-rp2tqjd23rcsfr1vrb6afgi7c28iuh9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp4sVPBYMkwFgumrq9--7LWQOqODmlnFw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

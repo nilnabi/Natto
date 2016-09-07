@@ -2,6 +2,7 @@ buildscript {
     ext {
         android_support_version = '24.2.0'
         retrofit2_version = '2.1.0'
+        play_service_version = '9.4.0'
     }
     repositories {
         jcenter()
@@ -10,6 +11,7 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
@@ -68,6 +70,10 @@ dependencies {
 
     // Google Data binding
     kapt "com.android.databinding:compiler:$android_compile_tools_version"
+
+    // Firebase
+    compile "com.google.firebase:firebase-core:$play_service_version"
+    compile "com.google.firebase:firebase-database:$play_service_version"
 
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
