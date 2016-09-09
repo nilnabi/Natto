@@ -25,6 +25,12 @@ class RssItem {
     @set:Element
     @get:Element
     var link: String = ""
+    set(value) {
+        field = value
+        rfdUrl = value.replace(Regex("archives/.+"), "index.rdf")
+    }
+
+    var rfdUrl: String = ""
 
     @set:Element(required = false)
     @get:Element(required = false)
@@ -34,10 +40,6 @@ class RssItem {
     @set:Element(required = false)
     @get:Element(required = false)
     var date: String = ""
-
-    fun getKey(): String {
-        return link.replace(Regex("archives/.+"), "index.rdf")
-    }
 
     fun toMapOf(): Map<String, Any> {
         return mapOf(

@@ -36,8 +36,8 @@ class LiveDoorApi {
         @GET("/xml/recent_articles.rdf")
         fun recentArticle(): Observable<RssFeed>
 
-        @GET
-        fun requestOrigin(): Observable<RssFeed>
+        @GET("/index.rdf")
+        fun requestRdf(): Observable<RssFeed>
     }
 
 }
